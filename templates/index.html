@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='styles.css') }}">
+</head>
+<body>
+    <button id="game-button" style="position: absolute; top: 50%; left: 50%;" onmouseover="moveButton()" onclick="youWin()">Click me!</button>
+
+    <script>
+    function moveButton() {
+        fetch('/move_button', { method: 'GET' })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('game-button').style.top = data.btn_y + '%';
+                document.getElementById('game-button').style.left = data.btn_x + '%';
+            });
+    }
+
+    function youWin() {
+        alert('You win!');
+    }
+    </script>
+</body>
+</html>
+
+
